@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Institute</title>
+    <link rel="icon" type="img/png" href="./Icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Auth Section -->
+    <div id="authSection" class="container"
+        style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="glass-card fade-in" style="max-width: 400px; width: 100%;">
+            <h2 class="text-center mb-4">Admin Login</h2>
+            <form id="loginForm">
+                <div>
+                    <label class="text-muted" style="font-size: 0.9rem;">Mobile Number</label>
+                    <input type="text" id="mobile" placeholder="Enter mobile number" required>
+                </div>
+                <div>
+                    <label class="text-muted" style="font-size: 0.9rem;">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="container fade-in" style="display: none;">
+        <header class="flex justify-between items-center mb-4">
+            <div>
+                <h1 style="font-size: 1.8rem;">Admin Dashboard</h1>
+                <p class="text-muted">Manage Students & Fees</p>
+            </div>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </header>
+
+        <!-- Stats/Actions -->
+        <div class="grid grid-cols-1 mb-4">
+            <div class="glass-card flex justify-between items-center">
+                <h3 class="text-xl">Students Overview</h3>
+                <button id="addStudentBtn" class="btn btn-primary">+ Add New Student</button>
+            </div>
+        </div>
+
+        <!-- Students List -->
+        <div id="studentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Dynamic Content -->
+        </div>
+    </div>
+
+    <!-- Add/Edit Student Modal -->
+    <div id="studentModal" class="modal-overlay">
+        <div class="glass-card modal-content fade-in">
+            <h2 id="modalTitle" class="mb-4">Add Student</h2>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-muted">Index Number</label>
+                        <input type="text" id="sIdx" required>
+                    </div>
+                    <div>
+                        <label class="text-muted">Full Name</label>
+                        <input type="text" id="sName" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-muted">School</label>
+                        <input type="text" id="sSchool" required>
+                    </div>
+                    <div>
+                        <label class="text-muted">Badge (Batch)</label>
+                        <input type="text" id="sBadge" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-muted">Grade</label>
+                        <input type="text" id="sGrade" required>
+                    </div>
+                    <div>
+                        <label class="text-muted">Exam Type</label>
+                        <select id="sExamType" required>
+                            <option value="OL">OL</option>
+                            <option value="AL">AL</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-muted">Description (Private Note)</label>
+                    <textarea id="sDesc" rows="2"></textarea>
+                </div>
+
+                <div class="flex justify-between mt-4">
+                    <button type="button" class="btn btn-secondary" id="closeModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Marks View Modal -->
+    <div id="marksModal" class="modal-overlay">
+        <div class="glass-card modal-content fade-in" style="max-width: 600px;">
+            <div class="flex justify-between items-center mb-4">
+                <h2>Student Marks History</h2>
+                <button class="btn btn-secondary" id="closeMarksModal">Close</button>
+            </div>
+            <!-- Add Mark Section -->
+            <div class="glass-card mb-4" style="background: rgba(255, 255, 255, 0.05);">
+                <h4 class="mb-2 text-sm text-muted">Add New Mark</h4>
+                <div class="grid grid-cols-3 gap-2 mb-2">
+                    <input type="text" id="mSubject" placeholder="Subject" class="p-2" style="font-size: 0.9rem;">
+                    <input type="text" id="mTerm" placeholder="Term (e.g. Term 1)" class="p-2"
+                        style="font-size: 0.9rem;">
+                    <input type="number" id="mScore" placeholder="Score" class="p-2" style="font-size: 0.9rem;">
+                </div>
+                <button id="addMarkBtn" class="btn btn-primary btn-sm" style="width: 100%;">Add Mark</button>
+            </div>
+
+            <h4 class="mb-2 text-muted">History</h4>
+            <div id="marksList" style="max-height: 200px; overflow-y: auto;">
+                <!-- Marks List -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

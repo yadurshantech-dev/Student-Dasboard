@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Siphara Institute</title>
+    <link rel="icon" type="img/png" href="./Icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="container"
+        style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="glass-card fade-in" style="max-width: 400px; width: 100%;">
+            <h2 class="text-center mb-4">Student Portal Login</h2>
+            <form id="studentLoginForm">
+                <div>
+                    <label class="text-muted" style="font-size: 0.9rem;">Index Number</label>
+                    <input type="text" id="idxNumber" placeholder="Enter your index number" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Access Portal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="container fade-in" style="display: none;">
+        <header class="flex justify-between items-center mb-4">
+            <div>
+                <h1 style="font-size: 1.8rem;" id="welcomeName">Welcome, Student</h1>
+                <p class="text-muted" id="studentInfo">Index: ...</p>
+            </div>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Profile Card -->
+            <div class="glass-card">
+                <h3 class="mb-4" style="border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">My
+                    Profile</h3>
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between">
+                        <span class="text-muted">School</span>
+                        <span class="font-bold" id="dispSchool">...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-muted">Grade</span>
+                        <span class="font-bold" id="dispGrade">...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-muted">Batch</span>
+                        <span class="font-bold" id="dispBadge">...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-muted">Exam Type</span>
+                        <span class="font-bold" id="dispExam">...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info Card -->
+            <div class="glass-card">
+                <h3 class="mb-4" style="border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;">
+                    More Details (Optional)
+                </h3>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <label class="text-muted text-sm">Email Address</label>
+                        <input type="email" id="sEmail" placeholder="example@mail.com" class="p-2 w-full"
+                            style="border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); border-radius: 8px; color: var(--text-main);">
+                    </div>
+                    <div>
+                        <label class="text-muted text-sm">About Me</label>
+                        <textarea id="sAbout" rows="2" placeholder="Tell us about yourself..." class="p-2 w-full"
+                            style="border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); border-radius: 8px; color: var(--text-main); font-family: inherit;"></textarea>
+                    </div>
+                    <button id="saveProfileBtn" class="btn btn-primary btn-sm mt-2">Save Details</button>
+                </div>
+            </div>
+
+            <!-- Fee Status Card -->
+            <div class="glass-card flex flex-col justify-center items-center text-center">
+                <h3 class="mb-2">Monthly Fee Status</h3>
+                <div id="feeStatusBadge" class="badge-unpaid mb-4" style="font-size: 1.2rem; padding: 0.5rem 1.5rem;">
+                    UNPAID</div>
+                <p class="text-muted mb-4" style="font-size: 0.9rem;">Fees are reset monthly. Ensure your payments are
+                    up to date.</p>
+                <button id="payFeeBtn" class="btn btn-primary" style="width: 100%;">Pay Fee Now</button>
+            </div>
+
+        </div>
+
+        <!-- Marks History -->
+        <div class="glass-card mt-4">
+            <h3 class="mb-4">Term Test Marks</h3>
+            <div id="marksContainer">
+                <p class="text-muted">No marks recorded yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Processing Modal -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="glass-card modal-content text-center">
+            <div id="paymentProcessing">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💸</div>
+                <h3>Processing Payment...</h3>
+                <p class="text-muted">Please wait while we contact the bank.</p>
+            </div>
+            <div id="paymentSuccess" style="display: none;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                <h3 class="text-main" style="color: var(--success);">Payment Successful!</h3>
+                <p class="text-muted">Your fee status has been updated.</p>
+                <button class="btn btn-primary mt-4" id="closePaymentModal">Close</button>
+            </div>
+            <div id="paymentError" style="display: none;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
+                <h3 class="text-main" style="color: var(--danger);">Payment Failed</h3>
+                <p class="text-muted">Something went wrong. Please try again.</p>
+                <button class="btn btn-secondary mt-4" id="retryPaymentBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/student.js"></script>
+</body>
+
+</html>
