@@ -1,3 +1,4 @@
 const CONFIG = {
-    API_BASE_URL: 'http://localhost:5000/api'
+    API_BASE_URL: 'student-dasboard-production.up.railway.app'
 };
+
